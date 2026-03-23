@@ -272,9 +272,8 @@
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
-      gap: 1rem;
+      gap: .6rem;
       min-height: 360px;
-      position: relative;
     }
     @media (max-width: 820px) {
       .panel-preview {
@@ -285,8 +284,6 @@
       }
     }
     .preview-label {
-      position: absolute;
-      top: .7rem; left: .7rem;
       font-size: .6rem;
       font-weight: 700;
       letter-spacing: 3px;
@@ -294,6 +291,7 @@
       color: var(--brat);
       border: 1px solid var(--brat);
       padding: .15rem .45rem;
+      align-self: flex-start;
     }
     #preview-canvas {
       width: 100%;
