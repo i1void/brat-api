@@ -25,27 +25,42 @@ function fitSize(ctx, text, maxW, maxH, min, max) {
 }
 
 export function renderBrat(createCanvas, text, bg, fg, opacity = 1, width = 800, height = 800) {
+  // render ke canvas kecil dulu (85%)
+  const small = Math.round(width * 0.85);
+  const tmp = createCanvas(small, small);
+  const tCtx = tmp.getContext('2d');
+  const pad = small * 0.06;
+  const maxW = small - pad * 2;
+
+  tCtx.fillStyle = bg;
+  tCtx.fillRect(0, 0, small, small);
+
+  tCtx.globalAlpha = opacity;
+  tCtx.fillStyle = fg;
+  tCtx.textAlign = 'left';
+  tCtx.textBaseline = 'top';
+
+  const size = fitSize(tCtx, text, maxW, small - pad * 2, small * 0.08, small);
+  tCtx.font = `${size}px "Arial Narrow", sans-serif`;
+
+  const lines = wrapText(tCtx, text, maxW);
+  const lineH = size * 1.15;
+  let y = (small - lines.length * lineH) / 2;
+  for (const line of lines) { tCtx.fillText(line, pad, y); y += lineH; }
+  tCtx.globalAlpha = 1;
+
+  // upscale balik — nearest neighbor = pixelated
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext('2d');
-  const pad = width * 0.06;
-  const maxW = width - pad * 2;
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(tmp, 0, 0, width, height);
 
-  ctx.fillStyle = bg;
-  ctx.fillRect(0, 0, width, height);
-
-  ctx.globalAlpha = opacity;
-  ctx.fillStyle = fg;
-  ctx.textAlign = 'left';
-  ctx.textBaseline = 'top';
-
-  const size = fitSize(ctx, text, maxW, height - pad * 2, width * 0.08, width);
-  ctx.font = `${size}px "Arial Narrow", sans-serif`;
-
-  const lines = wrapText(ctx, text, maxW);
-  const lineH = size * 1.15;
-  let y = (height - lines.length * lineH) / 2;
-  for (const line of lines) { ctx.fillText(line, pad, y); y += lineH; }
-  ctx.globalAlpha = 1;
+  // blur
+  ctx.filter = 'blur(1.5px)';
+  const tmp2 = createCanvas(width, height);
+  tmp2.getContext('2d').drawImage(canvas, 0, 0);
+  ctx.drawImage(tmp2, 0, 0);
+  ctx.filter = 'none';
 
   return canvas;
 }
