@@ -34,40 +34,6 @@ GET /?text=your+text
 
 > `bg` / `fg` takes priority over `preset`. if neither is set, defaults to brat green.
 
-### examples
-
-```
-# brat preset
-https://api.ivoid.cfd/?text=360&preset=brat
-
-# custom colors
-https://api.ivoid.cfd/?text=crash&bg=019bd9&fg=f70000
-
-# custom size + opacity
-https://api.ivoid.cfd/?text=apple&preset=sucker&width=1200&height=1200&opacity=0.8
-```
-
-### presets
-
-| key | name |
-|---|---|
-| `brat` | brat |
-| `bratdeluxe` | brat deluxe |
-| `crash` | crash |
-| `howimfeelingnow` | how i'm feeling now |
-| `charli` | charli |
-| `pop2` | pop 2 |
-| `vroomvroom` | vroom vroom |
-| `number1angel` | number 1 angel |
-| `sucker` | sucker |
-| `trueromance` | true romance |
-
-list all presets: `GET /api/presets`
-
-health check: `GET /api/health`
-
----
-
 ## running locally
 
 ```bash
