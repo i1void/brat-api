@@ -2,6 +2,8 @@ import { albumColors } from '../lib/colors.js';
 import { randomText } from '../lib/texts.js';
 import { drawToCanvas, exportPng, copyImage } from './canvas.js';
 
+const API_BASE = 'https://api.ivoid.cfd';
+
 const state = {
   text: randomText(),
   preset: 'brat',
@@ -24,7 +26,7 @@ function updateApiUrl() {
   if (state.preset !== 'custom') p.set('preset', state.preset);
   else { p.set('bg', state.bg.replace('#','')); p.set('fg', state.fg.replace('#','')); }
   if (state.opacity < 1) p.set('opacity', state.opacity);
-  apiUrl.textContent = `${location.origin}/api?${p}`;
+  apiUrl.textContent = `${API_BASE}/?${p}`;
 }
 
 // DOM refs — semua di dalam init()
