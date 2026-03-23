@@ -56,7 +56,7 @@ export function renderBrat(createCanvas, text, bg, fg, opacity = 1, width = 800,
   ctx.drawImage(tmp, 0, 0, width, height);
 
   // blur
-  ctx.filter = 'blur(1.5px)';
+  ctx.filter = 'blur(4px)';
   const tmp2 = createCanvas(width, height);
   tmp2.getContext('2d').drawImage(canvas, 0, 0);
   ctx.drawImage(tmp2, 0, 0);
