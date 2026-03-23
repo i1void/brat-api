@@ -14,7 +14,7 @@ function wrapText(ctx, text, maxW) {
 function fitSize(ctx, text, maxW, maxH, min, max) {
   let size = max;
   while (size > min) {
-    ctx.font = `${size}px Arial, sans-serif`;
+    ctx.font = `${size}px "Arial Narrow", sans-serif`;
     const lines = wrapText(ctx, text, maxW);
     const h = lines.length * size * 1.15;
     const w = lines.reduce((a, l) => Math.max(a, ctx.measureText(l).width), 0);
@@ -39,7 +39,7 @@ export function renderBrat(createCanvas, text, bg, fg, opacity = 1, width = 800,
   ctx.textBaseline = 'top';
 
   const size = fitSize(ctx, text, maxW, height - pad * 2, width * 0.08, width);
-  ctx.font = `${size}px Arial, sans-serif`;
+  ctx.font = `${size}px "Arial Narrow", sans-serif`;
 
   const lines = wrapText(ctx, text, maxW);
   const lineH = size * 1.15;
