@@ -1,6 +1,13 @@
-import { createCanvas } from '@napi-rs/canvas';
+import { createCanvas, GlobalFonts } from '@napi-rs/canvas';
+import { join } from 'path';
 import { albumColors } from '../src/lib/colors.js';
 import { renderBrat } from '../src/renderer/bratRenderer.js';
+
+// Register Arial Narrow font for server-side rendering
+GlobalFonts.registerFromPath(
+  join(process.cwd(), 'public/fonts/arialnarrow.ttf'),
+  'Arial Narrow'
+);
 
 export default function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
