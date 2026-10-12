@@ -1,57 +1,61 @@
 # bratify
 
-> brat-style image generator — web UI + REST API.
+Brat-style image generator: a web UI and a free REST API.
+Vanilla JS, drawn on canvas, deployed on Vercel.
 
-built with vanilla JS, rendered on canvas, deployed on vercel.
+## Using it
 
----
-
-## usage
-
-open the web UI, type your text, pick a color preset or use custom colors, download or copy the image.
-
----
+Open the site, type your text, pick a preset (or custom colors), then download or copy the image.
+The page shows the exact API URL for your current settings, using whatever domain it is served from.
 
 ## REST API
 
-**base url:** `https://api.ivoid.cfd`
+The base URL is **your own deployment**, for example `https://your-project.vercel.app`.
 
 ```
-GET /?text=your+text
+GET /api?text=your+text
 ```
 
-### parameters
+`GET /?text=your+text` works as a shortcut for the same thing.
 
-| param | required | description |
-|---|---|---|
-| `text` | ✓ | text to render |
-| `preset` | — | color preset name (see presets below) |
-| `bg` | — | background hex color, without `#` |
-| `fg` | — | text hex color, without `#` |
-| `opacity` | — | text opacity `0.0–1.0`, default `1` |
-| `width` | — | output width in px, `200–2000`, default `800` |
-| `height` | — | output height in px, `200–2000`, default `800` |
+| param     | required | description                                             |
+| --------- | -------- | ------------------------------------------------------- |
+| `text`    | yes      | text to render (max 500 characters)                     |
+| `preset`  | no       | color preset, see `GET /api/presets`                    |
+| `bg`      | no       | background hex color without `#`, e.g. `8ace00`         |
+| `fg`      | no       | text hex color without `#`                              |
+| `opacity` | no       | text opacity `0` to `1`, default `1`                    |
+| `width`   | no       | output width in px, `200` to `2000`, default `800`      |
+| `height`  | no       | output height in px, `200` to `2000`, default `800`     |
 
-> `bg` / `fg` takes priority over `preset`. if neither is set, defaults to brat green.
+`bg` / `fg` win over `preset`. With nothing set you get the classic brat green.
 
-## running locally
+Other endpoints:
+
+- `GET /api/presets` list of color presets
+- `GET /api/health` health check
+
+Errors come back as JSON with status `400` (bad input) or `500` (render failed).
+
+## Run locally
 
 ```bash
 npm install
-npx vite        # or any static file server
+npm run dev      # http://localhost:3000
 ```
 
----
+## Deploy
 
-## tech
+Push to GitHub and import the repo in Vercel. No build command and no settings are needed.
+`vercel.json` already bundles the font into the serverless function.
 
-- frontend — vanilla JS, canvas API
-- rendering — `bratRenderer.js` (fits text, applies blur)
-- server-side — `@napi-rs/canvas` via vercel serverless function
-- fonts — Arial Narrow (local), Space Mono + Unbounded (google fonts)
+## How it works
 
----
+- `src/renderer/bratRenderer.js` fits the text, pixelates and blurs it. The same code runs in the browser and on the server.
+- `api/*.js` are the serverless functions (`@napi-rs/canvas`).
+- `src/app/*.js` is the web UI.
+- `public/fonts/` holds Arial Narrow. Serverless machines have no fonts of their own, so the API registers it at startup.
 
-## license
+## License
 
 MIT

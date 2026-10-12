@@ -4,6 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>Brat API</title>
+  <meta name="description" content="Brat-style image generator: web UI and free REST API." />
+  <link rel="icon" type="image/png" href="/public/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Unbounded:wght@700;900&display=swap" rel="stylesheet" />
   <style>
@@ -543,21 +545,21 @@
     </div>
     <div class="drawer-section">
       <p class="drawer-section-title">navigate</p>
-      <a class="drawer-link" href="https://brat.herta.web.id"><span class="drawer-link-icon">⌂</span> home</a>
+      <a class="drawer-link" href="/"><span class="drawer-link-icon">⌂</span> home</a>
       <a class="drawer-link" href="#api-section-anchor"><span class="drawer-link-icon">⚡</span> rest api</a>
       <a class="drawer-link" href="https://github.com/" target="_blank" rel="noopener"><span class="drawer-link-icon">◈</span> source code</a>
     </div>
     <div class="drawer-section">
       <p class="drawer-section-title">api endpoint</p>
       <p class="drawer-api-label">base url</p>
-      <div class="drawer-api-url">https://brat.herta.web.id</div>
+      <div class="drawer-api-url" id="drawer-api-url">/api</div>
     </div>
     <div class="drawer-section">
       <p class="drawer-section-title">quick links</p>
-      <a class="drawer-link" href="https://brat.herta.web.id/?text=brat&preset=brat" target="_blank" rel="noopener"><span class="drawer-link-icon">↗</span> brat preset</a>
-      <a class="drawer-link" href="https://brat.herta.web.id/?text=crash&preset=crash" target="_blank" rel="noopener"><span class="drawer-link-icon">↗</span> crash preset</a>
-      <a class="drawer-link" href="https://brat.herta.web.id/api/presets" target="_blank" rel="noopener"><span class="drawer-link-icon">↗</span> list presets</a>
-      <a class="drawer-link" href="https://brat.herta.web.id/api/health" target="_blank" rel="noopener"><span class="drawer-link-icon">♥</span> health check</a>
+      <a class="drawer-link" href="/api?text=brat&preset=brat" target="_blank" rel="noopener"><span class="drawer-link-icon">↗</span> brat preset</a>
+      <a class="drawer-link" href="/api?text=crash&preset=crash" target="_blank" rel="noopener"><span class="drawer-link-icon">↗</span> crash preset</a>
+      <a class="drawer-link" href="/api/presets" target="_blank" rel="noopener"><span class="drawer-link-icon">↗</span> list presets</a>
+      <a class="drawer-link" href="/api/health" target="_blank" rel="noopener"><span class="drawer-link-icon">♥</span> health check</a>
     </div>
     <div class="drawer-section">
       <p class="drawer-section-title">status</p>
@@ -569,7 +571,7 @@
   </nav>
 
   <header>
-    <a class="logo" href="https://brat.herta.web.id">Brat API</a>
+    <a class="logo" href="/">Brat API</a>
     <div class="header-right">
       <span class="tag">brat gen</span>
       <span class="tag tag-secondary" style="background:var(--white);color:var(--black);">charli xcx</span>
