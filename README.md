@@ -1,7 +1,7 @@
 # bratify
 
 Brat-style image generator: a web UI and a free REST API.
-Vanilla JS, drawn on canvas, deployed on Vercel.
+Vanilla JS, drawn on canvas, deployed on Vercel. serverless
 
 ## Using it
 
@@ -55,7 +55,3 @@ Push to GitHub and import the repo in Vercel. No build command and no settings a
 - `api/*.js` are the serverless functions (`@napi-rs/canvas`).
 - `src/app/*.js` is the web UI.
 - `public/fonts/` holds Arial Narrow. Serverless machines have no fonts of their own, so the API registers it at startup.
-
-## License
-
-MIT
